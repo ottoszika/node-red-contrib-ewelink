@@ -1,0 +1,26 @@
+{
+  "name": "node-red-contrib-ewelink",
+  "version": "0.0.1",
+  "description": "NodeRED nodes for eWeLink smart devices",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/ottoszika/node-red-contrib-ewelink.git"
+  },
+  "keywords": [
+    "node-red",
+    "ewelink",
+    "sonoff"
+  ],
+  "author": {
+    "name": "Otto Szika",
+    "email": "otto.szika@icloud.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ottoszika/node-red-contrib-ewelink/issues"
+  },
+  "homepage": "https://github.com/ottoszika/node-red-contrib-ewelink#readme"
+}
