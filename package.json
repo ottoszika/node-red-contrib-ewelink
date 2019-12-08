@@ -25,6 +25,7 @@
   "homepage": "https://github.com/ottoszika/node-red-contrib-ewelink#readme",
   "node-red": {
     "nodes": {
+      "ewlink-credentials": "src/credentials/credentials.js",
       "basic": "src/basic/basic.js"
     }
   },
