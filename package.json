@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "description": "NodeRED nodes for eWeLink smart devices",
   "scripts": {
-    "test": "mocha \"test/**/*_spec.js\""
+    "test": "nyc --reporter=html --reporter=text mocha",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
@@ -33,8 +34,11 @@
     "ewelink-api": "^1.10.0"
   },
   "devDependencies": {
+    "coveralls": "^3.0.9",
     "mocha": "^6.2.2",
+    "mocha-lcov-reporter": "^1.3.0",
     "node-red": "^1.0.3",
-    "node-red-node-test-helper": "^0.2.3"
+    "node-red-node-test-helper": "^0.2.3",
+    "nyc": "^14.1.1"
   }
 }
