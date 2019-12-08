@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "NodeRED nodes for eWeLink smart devices",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha \"test/**/*_spec.js\""
   },
   "repository": {
     "type": "git",
@@ -22,5 +22,15 @@
   "bugs": {
     "url": "https://github.com/ottoszika/node-red-contrib-ewelink/issues"
   },
-  "homepage": "https://github.com/ottoszika/node-red-contrib-ewelink#readme"
+  "homepage": "https://github.com/ottoszika/node-red-contrib-ewelink#readme",
+  "node-red": {
+    "nodes": {
+      "basic": "src/basic/basic.js"
+    }
+  },
+  "devDependencies": {
+    "mocha": "^6.2.2",
+    "node-red": "^1.0.3",
+    "node-red-node-test-helper": "^0.2.3"
+  }
 }
