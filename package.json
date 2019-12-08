@@ -28,6 +28,9 @@
       "basic": "src/basic/basic.js"
     }
   },
+  "dependencies": {
+    "ewelink-api": "^1.10.0"
+  },
   "devDependencies": {
     "mocha": "^6.2.2",
     "node-red": "^1.0.3",
