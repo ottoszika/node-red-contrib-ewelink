@@ -20,8 +20,14 @@ module.exports = {
         // Set the node status to 'connecting'
         this.setNodeStatusToConnecting(node);
     
-        // Create a new eWeLink connection instance
-        const connection = new ewelink(credentialsNode.credentials);
+        // Get global connection
+        let connection = node.context().global.eWeLinkConnection;
+        
+        // If there is no global connection we create a new one and make it singleton
+        if (!connection) {
+            connection = new ewelink(credentialsNode.credentials);
+            node.context().global.eWeLinkConnection = connection;
+        }
     
         return new Promise((resolve, reject) => { 
             // Logging in
