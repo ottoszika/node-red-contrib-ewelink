@@ -1,9 +1,9 @@
-var helper = require('node-red-node-test-helper');
-var credentialsNode = require('../src/credentials/credentials');
+const helper = require('node-red-node-test-helper');
+const credentialsNode = require('../src/credentials/credentials');
 
-describe('Credentials Node', function () {
+describe('Credentials Node', () => {
 
-  var credentials = {
+  const credentials = {
     n1: {
       email: 'dummy@dummy.tld',
       password: 'abcd',
@@ -11,19 +11,19 @@ describe('Credentials Node', function () {
     }
   };
 
-  beforeEach(function (done) {
+  beforeEach(done => {
     helper.startServer(done);
   });
 
-  afterEach(function (done) {
-    helper.unload().then(function () {
+  afterEach(done => {
+    helper.unload().then(() => {
       helper.stopServer(done);
     });
   });
 
-  it('should be loaded', function (done) {
+  it('should be loaded', done => {
     var flow = [{ id: 'n1', type: 'ewelink-credentials' }];
-    helper.load(credentialsNode, flow, credentials, function () {
+    helper.load(credentialsNode, flow, credentials, () => {
       var n1 = helper.getNode('n1');
 
       n1.credentials.should.have.property('email', 'dummy@dummy.tld');
@@ -34,9 +34,9 @@ describe('Credentials Node', function () {
     });
   });
 
-  it('should unpack credentials', function (done) {
+  it('should unpack credentials', done => {
     var flow = [{ id: 'n1', type: 'ewelink-credentials' }];
-    helper.load(credentialsNode, flow, credentials, function () {
+    helper.load(credentialsNode, flow, credentials, () => {
       var n1 = helper.getNode('n1');
 
       n1.should.have.property('email', 'dummy@dummy.tld');

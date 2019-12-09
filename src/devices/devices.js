@@ -1,4 +1,4 @@
-var eWeLinkConnect = require('../utils/ewelink-connect');
+const eWeLinkConnect = require('../utils/ewelink-connect');
 
 /**
  * Devices node.
