@@ -35,7 +35,7 @@ describe('eWeLink Connect Utils', () => {
     });
 
     it('should throw an error when no credentials were set', done => {
-      expect(eWeLinkConnect.login).to.throw(Error);
+      expect(() => eWeLinkConnect.login(helper._RED, {}, {})).to.throw('No credentials provided!');
       done();
     });
 
