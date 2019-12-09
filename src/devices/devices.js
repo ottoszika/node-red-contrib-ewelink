@@ -20,7 +20,7 @@ module.exports = (RED) => {
       this.on('input', () => {
         connection.getDevices().then(devices => {
           this.send({ payload: devices });
-        }).catch(err => this.error(err));
+        }).catch(error => this.error(error));
       })
     }).catch(error => this.error(error));
   }
