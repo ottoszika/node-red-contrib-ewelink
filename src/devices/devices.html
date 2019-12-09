@@ -1,0 +1,30 @@
+<script type="text/javascript">
+  RED.nodes.registerType('ewelink-devices', {
+    category: 'eWeLink',
+    color: '#a6bbcf',
+    defaults: {
+      name: { value: '' },
+      auth: { value: '', type: 'ewelink-credentials' }
+    },
+    inputs: 1,
+    outputs: 1,
+    label: function () {
+      return this.name || 'eWeLink Devices';
+    }
+});
+</script>
+  
+<script type="text/x-red" data-template-name="ewelink-devices">
+  <div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+  <div class="form-row">
+    <label for="node-input-auth"><i class="icon-tag"></i> eWeLink Credentials</label>
+    <input type="text" id="node-input-auth" placeholder="eWeLink Credentials">
+  </div>
+</script>
+
+<script type="text/x-red" data-help-name="ewelink-devices">
+  <p>Fetches all the available devices</p>
+</script>
