@@ -1,0 +1,34 @@
+<script type="text/javascript">
+  RED.nodes.registerType('ewelink-event-listener', {
+    category: 'eWeLink',
+    color: '#a6bbcf',
+    defaults: {
+      name: { value: '' },
+      deviceId: { value: '' },
+      auth: { value: '', type: 'ewelink-credentials' }
+    },
+    outputs: 1,
+    label: function () {
+      return this.name || 'eWeLink Event Listener';
+    }
+});
+</script>
+  
+<script type="text/x-red" data-template-name="ewelink-event-listener">
+  <div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+  <div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Device ID</label>
+    <input type="text" id="node-input-deviceId" placeholder="Device ID">
+  </div>
+  <div class="form-row">
+    <label for="node-input-auth"><i class="icon-tag"></i> eWeLink Credentials</label>
+    <input type="text" id="node-input-auth" placeholder="eWeLink Credentials">
+  </div>
+</script>
+
+<script type="text/x-red" data-help-name="ewelink-event-listener">
+  <p>Listen for all or a specific device events</p>
+</script>
