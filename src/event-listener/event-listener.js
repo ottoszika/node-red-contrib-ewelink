@@ -24,7 +24,7 @@ module.exports = (RED) => {
           this.send({ payload: data });
         }
       });
-    });
+    }).catch((error) => this.error(error));
   }
 
   // Register node
