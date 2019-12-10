@@ -67,8 +67,8 @@ module.exports = {
       // Once logged in we can listen to inputs
       node.on('input', (msg) => {
         method = method || msg.payload.method;
-        params = params || msg.payload.params || [];
-
+        params = (typeof params === 'function' ? params(msg) : params) || msg.payload.params || [];
+        
         // First parameter should be always the device ID
         params.unshift(deviceId);
         
