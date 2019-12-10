@@ -31,7 +31,8 @@
       "ewelink-generic-device": "src/generic-device/generic-device.js",
       "ewelink-firmware-version": "src/firmware-version/firmware-version.js",
       "ewelink-power-state": "src/power-state/power-state.js",
-      "ewelink-channel-count": "src/channel-count/channel-count.js"
+      "ewelink-channel-count": "src/channel-count/channel-count.js",
+      "ewelink-event-listener": "src/event-listener/event-listener.js"
     }
   },
   "dependencies": {
