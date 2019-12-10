@@ -29,7 +29,8 @@
       "ewelink-credentials": "src/credentials/credentials.js",
       "ewelink-devices": "src/devices/devices.js",
       "ewelink-generic-device": "src/generic-device/generic-device.js",
-      "ewelink-firmware-version": "src/firmware-version/firmware-version.js"
+      "ewelink-firmware-version": "src/firmware-version/firmware-version.js",
+      "ewelink-power-state": "src/power-state/power-state.js"
     }
   },
   "dependencies": {
