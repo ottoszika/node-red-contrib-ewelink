@@ -1,7 +1,8 @@
 <script type="text/javascript">
   RED.nodes.registerType('ewelink-channel-count', {
     category: 'eWeLink',
-    color: '#a6bbcf',
+    color: '#7bb6ef',
+    icon: 'font-awesome/fa-hashtag',
     defaults: {
       name: { value: '' },
       deviceId: { value: '' },
@@ -11,6 +12,9 @@
     outputs: 1,
     label: function () {
       return this.name || 'eWeLink Channel Count';
+    },
+    paletteLabel: function () {
+      return 'channels';
     }
 });
 </script>
