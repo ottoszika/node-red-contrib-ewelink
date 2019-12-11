@@ -1,7 +1,8 @@
 <script type="text/javascript">
   RED.nodes.registerType('ewelink-temperature-humidity', {
     category: 'eWeLink',
-    color: '#a6bbcf',
+    color: '#7bb6ef',
+    icon: 'font-awesome/fa-cloud',
     defaults: {
       name: { value: '' },
       deviceId: { value: '' },
@@ -11,6 +12,9 @@
     outputs: 1,
     label: function () {
       return this.name || 'eWeLink Temperature-Humidity';
+    },
+    paletteLabel: function () {
+      return 'temp / hum';
     }
 });
 </script>

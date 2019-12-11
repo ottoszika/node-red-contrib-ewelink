@@ -1,7 +1,8 @@
 <script type="text/javascript">
   RED.nodes.registerType('ewelink-power-state', {
     category: 'eWeLink',
-    color: '#a6bbcf',
+    color: '#7bb6ef',
+    icon: 'font-awesome/fa-toggle-on',
     defaults: {
       name: { value: '' },
       deviceId: { value: '' },
@@ -12,6 +13,9 @@
     outputs: 1,
     label: function () {
       return this.name || 'eWeLink Power State';
+    },
+    paletteLabel: function () {
+      return 'power state';
     }
 });
 </script>
