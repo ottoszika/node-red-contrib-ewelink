@@ -1,0 +1,40 @@
+<script type="text/javascript">
+  RED.nodes.registerType('ewelink-power-state-write', {
+    category: 'eWeLink',
+    color: '#7bb6ef',
+    icon: 'font-awesome/fa-toggle-on',
+    defaults: {
+      name: { value: '' },
+      deviceId: { value: '' },
+      auth: { value: '', type: 'ewelink-credentials' }
+    },
+    inputs: 1,
+    outputs: 1,
+    label: function () {
+      return this.name || 'eWeLink Power State Write';
+    },
+    paletteLabel: function () {
+      return 'power state';
+    },
+    align: 'right'
+});
+</script>
+  
+<script type="text/x-red" data-template-name="ewelink-power-state-write">
+  <div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+  <div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Device ID</label>
+    <input type="text" id="node-input-deviceId" placeholder="Device ID">
+  </div>
+  <div class="form-row">
+    <label for="node-input-auth"><i class="icon-tag"></i> eWeLink Credentials</label>
+    <input type="text" id="node-input-auth" placeholder="eWeLink Credentials">
+  </div>
+</script>
+
+<script type="text/x-red" data-help-name="ewelink-power-write">
+  <p>Sets the power state of the device</p>
+</script>
