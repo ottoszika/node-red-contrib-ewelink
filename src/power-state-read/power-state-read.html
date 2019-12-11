@@ -1,18 +1,17 @@
 <script type="text/javascript">
-  RED.nodes.registerType('ewelink-power-state', {
+  RED.nodes.registerType('ewelink-power-state-read', {
     category: 'eWeLink',
     color: '#7bb6ef',
     icon: 'font-awesome/fa-toggle-on',
     defaults: {
       name: { value: '' },
       deviceId: { value: '' },
-      mode: { value: 'read' },
       auth: { value: '', type: 'ewelink-credentials' }
     },
     inputs: 1,
     outputs: 1,
     label: function () {
-      return this.name || 'eWeLink Power State';
+      return this.name || 'eWeLink Power State Read';
     },
     paletteLabel: function () {
       return 'power state';
@@ -20,7 +19,7 @@
 });
 </script>
   
-<script type="text/x-red" data-template-name="ewelink-power-state">
+<script type="text/x-red" data-template-name="ewelink-power-state-read">
   <div class="form-row">
     <label for="node-input-name"><i class="icon-tag"></i> Name</label>
     <input type="text" id="node-input-name" placeholder="Name">
@@ -30,18 +29,11 @@
     <input type="text" id="node-input-deviceId" placeholder="Device ID">
   </div>
   <div class="form-row">
-    <label for="node-input-mode"><i class="icon-tag"></i> Mode</label>
-    <select id="node-input-mode" placeholder="Mode">
-      <option value="read">Read</option>
-      <option value="write">Write</option>
-    </select>
-  </div>
-  <div class="form-row">
     <label for="node-input-auth"><i class="icon-tag"></i> eWeLink Credentials</label>
     <input type="text" id="node-input-auth" placeholder="eWeLink Credentials">
   </div>
 </script>
 
 <script type="text/x-red" data-help-name="ewelink-power-state">
-  <p>Retrieves or sets the power state of the device</p>
+  <p>Reads the power state of the device</p>
 </script>
