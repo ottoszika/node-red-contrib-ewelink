@@ -33,7 +33,8 @@
       "ewelink-power-state": "src/power-state/power-state.js",
       "ewelink-channel-count": "src/channel-count/channel-count.js",
       "ewelink-event-listener": "src/event-listener/event-listener.js",
-      "ewelink-power-usage": "src/power-usage/power-usage.js"
+      "ewelink-power-usage": "src/power-usage/power-usage.js",
+      "ewelink-humidity": "src/humidity/humidity.js"
     }
   },
   "dependencies": {
