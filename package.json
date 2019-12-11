@@ -35,7 +35,8 @@
       "ewelink-event-listener": "src/event-listener/event-listener.js",
       "ewelink-power-usage": "src/power-usage/power-usage.js",
       "ewelink-humidity": "src/humidity/humidity.js",
-      "ewelink-temperature": "src/temperature/temperature.js"
+      "ewelink-temperature": "src/temperature/temperature.js",
+      "ewelink-temperature-humidity": "src/temperature-humidity/temperature-humidity.js"
     }
   },
   "dependencies": {
