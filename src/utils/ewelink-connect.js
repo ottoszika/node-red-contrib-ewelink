@@ -66,14 +66,15 @@ module.exports = {
     this.login(RED, node, config).then(connection => {
       // Once logged in we can listen to inputs
       node.on('input', (msg) => {
-        method = method || msg.payload.method;
-        params = (typeof params === 'function' ? params(msg) : params) || msg.payload.params || [];
+        // Get method name and build params
+        const evaluatedMethod = method || msg.payload.method;
+        const evaluatedParams = (typeof params === 'function' ? params(msg) : params) || msg.payload.params || [];
         
         // First parameter should be always the device ID
-        params.unshift(deviceId);
+        evaluatedParams.unshift(deviceId);
         
         // Call dynamically the method
-        connection[method].apply(connection, params).then(result => {
+        connection[evaluatedMethod].apply(connection, evaluatedParams).then(result => {
           node.send({ payload: result });
         }).catch(error => node.error(error));
       })
