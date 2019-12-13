@@ -6,6 +6,7 @@
     defaults: {
       name: { value: '' },
       deviceId: { value: '' },
+      channel: { value: 1 },
       auth: { value: '', type: 'ewelink-credentials' }
     },
     inputs: 1,
@@ -27,6 +28,10 @@
   <div class="form-row">
     <label for="node-input-name"><i class="icon-tag"></i> Device ID</label>
     <input type="text" id="node-input-deviceId" placeholder="Device ID">
+  </div>
+  <div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Channel</label>
+    <input type="text" id="node-input-channel" placeholder="Channel">
   </div>
   <div class="form-row">
     <label for="node-input-auth"><i class="icon-tag"></i> eWeLink Credentials</label>
