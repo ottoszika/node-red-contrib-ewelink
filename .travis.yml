@@ -1,6 +1,14 @@
 language: node_js
 node_js:
-  - 8
-  - 10
-  - 12
+- 8
+- 10
+- 12
 after_success: npm run coverage
+deploy:
+  provider: npm
+  email: otto.szika@icloud.com
+  api_key:
+    secure: N5WroeWCang4cKzM1gu0hUvLFZilhnutLjBcEYdNJ/cqlp/QG++2qGCjyYBp5NG9v1DqEbQcl+McG43yH+xaHj40EVgw4UL207F74QxnTBDTijtKP7bWBkxC+yjbysrZTQtPl6R8h+LKZ90tmRrBB4GR+y6B6+tJU+6oZoF0b5uq9qhmTsNCGz7Lely1LrJW3f2XcGxegl5PABtJe6UgEVubcsDuCT7laOCmy0ZGIjYrbHYlZce7qMGZByj1EN86eThlDoIglAQlzeGxTEq9Na6Ele8z6q3NTSxYGshTbdlE4tY0FHaoN0/VrFMRz9BzgpSMysX79mbTcLh4fPVwjn/54VfsZ+XzWmcwPGdRLu1JKhLlgV0T5XQSVeThzCL/MIBhd8I1fPR9jK/SIzBZhryTpBqbydIbATXEGwhAsfdSYbbMwopFdpe5XksM8Y4I9uc0AHHITbb76yBHgyGocasut3zc03gJM2ckuYWavHP6Fdivg0ycj7h9BPhXM86QHst7j3mfnHW7DCX2OA1xNqzTjhMNpx4wYpz5ghkWRcXceVBlNX/MvbpWUHd8rwAJM8NzF5uUTTBioqwjCaQJiLyEBbH02MTxNXDiQ0/GGipGG0pTFGVtHh+dGWO7pHu6dWS4vIOKMpGvX/JrR9fl4YTugWu4W5+cPAo84vgb1GE=
+  on:
+    tags: true
+    repo: ottoszika/node-red-contrib-ewelink
