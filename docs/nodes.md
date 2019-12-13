@@ -75,7 +75,7 @@ Result example:
 
 ![](images/nodes/power-state-in.png)
 
-Reads the current power state of a single channel device.
+Reads the current power state for a channel of a device.
 
 Result example:
 ```json
@@ -89,7 +89,7 @@ Result example:
 
 ![](images/nodes/power-state-out.png)
 
-Sets the power state of a single channel device. The payload can be any of the following strings:
+Sets the power state for a channel of a device. The payload can be any of the following strings:
 * on
 * off
 * toggle
