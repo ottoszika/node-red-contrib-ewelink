@@ -1,19 +1,19 @@
 # Nodes
 
 There are several nodes than can be used to communicate with your devices:
-* [Devices](#devices-node)
-* [Device (generic)](#device-node)
-* [Firmware](#firmware-node)
-* [Power state (in)](#power-state-in-node)
-* [Power state (out)](#power-state-out-node)
-* [Channels](#channels-node)
-* [Event listener](#event-listener-node)
-* [Power usage](#power-usage-node-node)
-* [Humidity](#humidity-node)
-* [Temperature](#temperature-node)
-* [Temperature and humidity](#temp-hum-node)
+* [Devices](#devices)
+* [Device (generic)](#device)
+* [Firmware](#firmware)
+* [Power state (in)](#power-state-in)
+* [Power state (out)](#power-state-out)
+* [Channels](#channels)
+* [Event listener](#event-listener)
+* [Power usage](#power-usage)
+* [Humidity](#humidity)
+* [Temperature](#temperature)
+* [Temperature and humidity](#temp-hum)
 
-#### [Devices node](#devices-node)
+#### Devices node :id=devices
 
 ![](images/nodes/devices.png)
 
@@ -33,7 +33,7 @@ Result example:
 ]
 ```
 
-#### [Device node (generic)](#device-node)
+#### Device node (generic) :id=device
 
 ![](images/nodes/device.png)
 
@@ -57,7 +57,7 @@ Simple example to turn on a **Sonoff Basic** relay:
 }
 ```
 
-#### [Firmware node](#firmware-node)
+#### Firmware node :id=firmware
 
 ![](images/nodes/firmware.png)
 
@@ -71,7 +71,7 @@ Result example:
 }
 ```
 
-#### [Power state node in](#powerstatein-node)
+#### Power state node (in) :id=power-state-in
 
 ![](images/nodes/power-state-in.png)
 
@@ -85,7 +85,7 @@ Result example:
 }
 ```
 
-#### [Power state node (out)](#power-state-out-node)
+#### Power state node (out) :id=power-state-out
 
 ![](images/nodes/power-state-out.png)
 
@@ -102,7 +102,7 @@ Result example:
 }
 ```
 
-#### [Channels node](#channels-node)
+#### Channels node :id=channels
 
 ![](images/nodes/channels.png)
 
@@ -116,7 +116,7 @@ Result example:
 }
 ```
 
-#### [Event listener node](#event-listener-node)
+#### Event listener node :id=event-listener
 
 ![](images/nodes/event-listener.png)
 
@@ -134,7 +134,7 @@ Result example:
 }
 ```
 
-#### [Power usage node](#power-usage-node)
+#### Power usage node :id=power-usage
 
 ![](images/nodes/power-usage.png)
 
@@ -154,7 +154,7 @@ Result example:
 }
 ```
 
-#### [Temperature node](#temperature-node)
+#### Temperature node :id=temperature
 
 ![](images/nodes/temperature.png)
 
@@ -168,7 +168,7 @@ Result example:
 }
 ```
 
-#### [Temperature and humidity node](#temp-hum-node)
+#### Temperature and humidity node :id=temp-hum
 
 ![](images/nodes/temp-hum.png)
 
