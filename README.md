@@ -8,7 +8,7 @@
   <img alt="GitHub" src="https://img.shields.io/github/license/ottoszika/node-red-contrib-ewelink?style=for-the-badge">
 </p>
 
-## eWeLink nodes for Node-RED
+## Node-RED nodes for eWeLink devices
 ![](docs/images/nodes/devices.png)
 ![](docs/images/nodes/device.png)
 ![](docs/images/nodes/firmware.png)
@@ -23,3 +23,6 @@
 
 ### Documentation
 Read the documentation here: https://ottoszika.github.io/node-red-contrib-ewelink
+
+### Special Thanks
+- [@skydiver](https://github.com/skydiver) - [eWeLink API](https://github.com/skydiver/ewelink-api)
