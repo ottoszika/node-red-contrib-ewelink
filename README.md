@@ -6,6 +6,8 @@
   <img alt="Travis (.org)" src="https://img.shields.io/travis/ottoszika/node-red-contrib-ewelink?style=for-the-badge">
   <img alt="Coveralls github" src="https://img.shields.io/coveralls/github/ottoszika/node-red-contrib-ewelink?style=for-the-badge">
   <img alt="GitHub" src="https://img.shields.io/github/license/ottoszika/node-red-contrib-ewelink?style=for-the-badge">
+  <img alt="npm version" src="https://img.shields.io/npm/v/node-red-contrib-ewelink?style=for-the-badge">
+  <img alt="npm downloads" src="https://img.shields.io/npm/dm/node-red-contrib-ewelink?style=for-the-badge">
 </p>
 
 ## Node-RED nodes for eWeLink devices
