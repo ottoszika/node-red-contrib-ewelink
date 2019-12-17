@@ -1,14 +1,12 @@
-const ewelink = require('ewelink-api');
-
 module.exports = {
   /**
-   * Perform a log in.
+   * Ready promise.
    * 
    * @param {object} RED The NodeRED instance.
    * @param {object} node The current node.
    * @param {object} config The node configuration.
    */
-  login(RED, node, config) {
+  ready(RED, node, config) {
     // Get credentials node
     const credentialsNode = RED.nodes.getNode(config.auth);
 
@@ -20,18 +18,14 @@ module.exports = {
     // Set the node status to 'connecting'
     this.setNodeStatusToConnecting(node);
 
-    // Get global connection
-    let connection = node.context().global.eWeLinkConnection;
-    
-    // If there is no global connection we create a new one and make it singleton
-    if (!connection) {
-      connection = new ewelink(credentialsNode.credentials);
-      node.context().global.eWeLinkConnection = connection;
-    }
+    return new Promise((resolve, reject) => {
+      // Check if already logged in
+      if (credentialsNode.connection.at) {
+        return resolve(credentialsNode.connection);
+      }
 
-    return new Promise((resolve, reject) => { 
       // Logging in
-      connection.login().then(response => {
+      credentialsNode.connection.login().then(response => {
         // Check for errors in the response
         if (response.error) {
           this.setNodeStatusToDisconnected(node);
@@ -40,7 +34,7 @@ module.exports = {
 
         // If we are here everything is great
         this.setNodeStatusToConnected(node);
-        resolve(connection);
+        resolve(credentialsNode.connection);
 
         }).catch(error => {
           this.setNodeStatusToDisconnected(node);
@@ -63,7 +57,7 @@ module.exports = {
     const deviceId = config.deviceId ? config.deviceId.trim() : '';
 
     // Log in to eWeLink
-    this.login(RED, node, config).then(connection => {
+    this.ready(RED, node, config).then(connection => {
       // Once logged in we can listen to inputs
       node.on('input', (msg) => {
         // Get method name and build params
