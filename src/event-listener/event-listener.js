@@ -13,7 +13,7 @@ module.exports = (RED) => {
     // Create the node
     RED.nodes.createNode(this, config);
 
-    // Login
+    // Wait until eWeLink connection is ready
     eWeLinkConnect.ready(RED, this, config).then(connection => {
       // Open websocket for real-time events
       connection.openWebSocket(data => {
