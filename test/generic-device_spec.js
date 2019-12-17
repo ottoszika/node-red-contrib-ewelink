@@ -38,7 +38,7 @@ describe('Genric Device Node', () => {
     const methodStub = sinon.stub(connection, 'testMethodAbc')
       .callsFake(() => Promise.resolve({ methodResult: 'great' }));
 
-    const loginStub = sinon.stub(eWeLinkConnect, 'login')
+    const readyStub = sinon.stub(eWeLinkConnect, 'ready')
       .callsFake(() => Promise.resolve(connection));
 
     const flow = [
@@ -55,10 +55,10 @@ describe('Genric Device Node', () => {
       setTimeout(() => {
         n2.on('input', () => {
           sinon.assert.calledWith(methodStub, '12345', 'a', 'b', 1);
-          sinon.assert.calledOnce(loginStub);
+          sinon.assert.calledOnce(readyStub);
 
           methodStub.restore();
-          loginStub.restore();
+          readyStub.restore();
 
           n4.on('input', msg => {
             expect(msg).to.deep.include({ payload: { methodResult: 'great' } });

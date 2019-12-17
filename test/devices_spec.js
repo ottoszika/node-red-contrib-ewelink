@@ -38,7 +38,7 @@ describe('Devices Node', () => {
     const getDevicesStub = sinon.stub(connection, 'getDevices')
       .callsFake(() => Promise.resolve({ devices: 'great' }));
 
-    const loginStub = sinon.stub(eWeLinkConnect, 'login')
+    const readyStub = sinon.stub(eWeLinkConnect, 'ready')
       .callsFake(() => Promise.resolve(connection));
 
     const flow = [
@@ -55,10 +55,10 @@ describe('Devices Node', () => {
       setTimeout(() => {
         n2.on('input', () => {
           sinon.assert.calledOnce(getDevicesStub);
-          sinon.assert.calledOnce(loginStub);
+          sinon.assert.calledOnce(readyStub);
 
           getDevicesStub.restore();
-          loginStub.restore();
+          readyStub.restore();
 
           n4.on('input', msg => {
             expect(msg).to.deep.include({ payload: { devices: 'great' } });
