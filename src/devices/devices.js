@@ -15,7 +15,7 @@ module.exports = (RED) => {
     RED.nodes.createNode(this, config);
     
     // Log in to eWeLink
-    eWeLinkConnect.login(RED, this, config).then(connection => {
+    eWeLinkConnect.ready(RED, this, config).then(connection => {
       // Once logged in we can listen to inputs
       this.on('input', () => {
         connection.getDevices().then(devices => {

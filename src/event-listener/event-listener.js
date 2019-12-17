@@ -14,7 +14,7 @@ module.exports = (RED) => {
     RED.nodes.createNode(this, config);
 
     // Login
-    eWeLinkConnect.login(RED, this, config).then(connection => {
+    eWeLinkConnect.ready(RED, this, config).then(connection => {
       // Open websocket for real-time events
       connection.openWebSocket(data => {
         // Return the payload if the device ID was not set or the event
