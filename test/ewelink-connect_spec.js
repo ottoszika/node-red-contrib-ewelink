@@ -39,6 +39,25 @@ describe('eWeLink Connect Utils', () => {
       done();
     });
 
+    it('should resolve if already logged in', (done) => {
+      const flow = [
+        { id: 'n1', type: 'ewelink-credentials' },
+        { id: 'n2', type: 'ewelink-devices', auth: 'n1' }
+      ];
+
+      helper.load([credentialsNode, devicesNode], flow, credentials, () => {
+        const n1 = helper.getNode('n1');
+        const n2 = helper.getNode('n2');
+
+        n1.connection = { at: 'something', assertProperty: 'random value' };
+
+        expect(eWeLinkConnect.ready(helper._RED, n2, { auth: 'n1' }))
+          .to.eventually.have.property('assertProperty', 'random value');
+
+        done();
+      });
+    });
+
     it('should handle login rejection', (done) => {
       const flow = [
         { id: 'n1', type: 'ewelink-credentials' },
