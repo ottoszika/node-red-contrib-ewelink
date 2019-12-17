@@ -46,7 +46,7 @@ describe('Event Listener Node', () => {
     const openWebSocketStub = sinon.stub(connection, 'openWebSocket')
       .callsFake((callback) => callback({ someData: 'new event' }));
 
-    const loginStub = sinon.stub(eWeLinkConnect, 'login')
+    const readyStub = sinon.stub(eWeLinkConnect, 'ready')
       .callsFake(() => Promise.resolve(connection));
 
     const flow = [
@@ -56,10 +56,10 @@ describe('Event Listener Node', () => {
     helper.load([credentialsNode, eventListenerNode], flow, credentials, () => {
       setTimeout(() => {
         sinon.assert.calledOnce(openWebSocketStub);
-        sinon.assert.calledOnce(loginStub);
+        sinon.assert.calledOnce(readyStub);
 
         openWebSocketStub.restore();
-        loginStub.restore();
+        readyStub.restore();
 
         done();
       });
@@ -72,7 +72,7 @@ describe('Event Listener Node', () => {
     const openWebSocketStub = sinon.stub(connection, 'openWebSocket')
       .callsFake((callback) => callback({ deviceid: '1234' }));
 
-    const loginStub = sinon.stub(eWeLinkConnect, 'login')
+    const readyStub = sinon.stub(eWeLinkConnect, 'ready')
       .callsFake(() => Promise.resolve(connection));
 
     const flow = [
@@ -91,10 +91,10 @@ describe('Event Listener Node', () => {
 
       setTimeout(() => {
         sinon.assert.calledOnce(openWebSocketStub);
-        sinon.assert.calledOnce(loginStub);
+        sinon.assert.calledOnce(readyStub);
 
         openWebSocketStub.restore();
-        loginStub.restore();
+        readyStub.restore();
       });
     });
   });
@@ -105,7 +105,7 @@ describe('Event Listener Node', () => {
     const openWebSocketStub = sinon.stub(connection, 'openWebSocket')
       .callsFake((callback) => callback({ deviceid: '1234' }));
 
-    const loginStub = sinon.stub(eWeLinkConnect, 'login')
+    const readyStub = sinon.stub(eWeLinkConnect, 'ready')
       .callsFake(() => Promise.resolve(connection));
 
     const flow = [
@@ -123,10 +123,10 @@ describe('Event Listener Node', () => {
 
       setTimeout(() => {
         sinon.assert.calledOnce(openWebSocketStub);
-        sinon.assert.calledOnce(loginStub);
+        sinon.assert.calledOnce(readyStub);
 
         openWebSocketStub.restore();
-        loginStub.restore();
+        readyStub.restore();
 
         setTimeout(() => {
           if (! handled) {
@@ -143,7 +143,7 @@ describe('Event Listener Node', () => {
     const openWebSocketStub = sinon.stub(connection, 'openWebSocket')
       .callsFake((callback) => callback('pong'));
 
-    const loginStub = sinon.stub(eWeLinkConnect, 'login')
+    const readyStub = sinon.stub(eWeLinkConnect, 'ready')
       .callsFake(() => Promise.resolve(connection));
 
     const flow = [
@@ -161,10 +161,10 @@ describe('Event Listener Node', () => {
 
       setTimeout(() => {
         sinon.assert.calledOnce(openWebSocketStub);
-        sinon.assert.calledOnce(loginStub);
+        sinon.assert.calledOnce(readyStub);
 
         openWebSocketStub.restore();
-        loginStub.restore();
+        readyStub.restore();
 
         setTimeout(() => {
           if (! handled) {
@@ -181,7 +181,7 @@ describe('Event Listener Node', () => {
     const openWebSocketStub = sinon.stub(connection, 'openWebSocket')
       .callsFake((callback) => callback({ deviceid: '1234' }));
 
-    const loginStub = sinon.stub(eWeLinkConnect, 'login')
+    const readyStub = sinon.stub(eWeLinkConnect, 'ready')
       .callsFake(() => Promise.resolve(connection));
 
     const flow = [
@@ -200,10 +200,10 @@ describe('Event Listener Node', () => {
 
       setTimeout(() => {
         sinon.assert.calledOnce(openWebSocketStub);
-        sinon.assert.calledOnce(loginStub);
+        sinon.assert.calledOnce(readyStub);
 
         openWebSocketStub.restore();
-        loginStub.restore();
+        readyStub.restore();
       });
     });
   });

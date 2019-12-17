@@ -1,3 +1,5 @@
+const ewelink = require('ewelink-api');
+
 /**
  * Credentials node.
  * This is a configuration node that holds the credentials for eWeLink.
@@ -16,6 +18,9 @@ module.exports = function (RED) {
     this.email = this.credentials.email;
     this.password = this.credentials.password;
     this.region = this.credentials.region;
+    
+    // Initialize eWeLink
+    this.connection = new ewelink(this.credentials);
   }
 
   // Register node

@@ -14,7 +14,7 @@ chai.use(chaiAsPromised);
 
 describe('eWeLink Connect Utils', () => {
 
-  describe('#login()', () => {
+  describe('#ready()', () => {
 
     const credentials = {
       n1: {
@@ -35,8 +35,27 @@ describe('eWeLink Connect Utils', () => {
     });
 
     it('should throw an error when no credentials were set', done => {
-      expect(() => eWeLinkConnect.login(helper._RED, {}, {})).to.throw('No credentials provided!');
+      expect(() => eWeLinkConnect.ready(helper._RED, {}, {})).to.throw('No credentials provided!');
       done();
+    });
+
+    it('should resolve if already logged in', (done) => {
+      const flow = [
+        { id: 'n1', type: 'ewelink-credentials' },
+        { id: 'n2', type: 'ewelink-devices', auth: 'n1' }
+      ];
+
+      helper.load([credentialsNode, devicesNode], flow, credentials, () => {
+        const n1 = helper.getNode('n1');
+        const n2 = helper.getNode('n2');
+
+        n1.connection = { at: 'something', assertProperty: 'random value' };
+
+        expect(eWeLinkConnect.ready(helper._RED, n2, { auth: 'n1' }))
+          .to.eventually.have.property('assertProperty', 'random value');
+
+        done();
+      });
     });
 
     it('should handle login rejection', (done) => {
@@ -51,7 +70,7 @@ describe('eWeLink Connect Utils', () => {
         const stub = sinon.stub(ewelink.prototype, 'login')
           .callsFake(() => Promise.reject({ somethingWentWrong: 'off...' }));
 
-        expect(eWeLinkConnect.login(helper._RED, n2, { auth: 'n1' }))
+        expect(eWeLinkConnect.ready(helper._RED, n2, { auth: 'n1' }))
           .to.be.rejectedWith({ somethingWentWrong: 'off...' });
 
         stub.restore();
@@ -72,7 +91,7 @@ describe('eWeLink Connect Utils', () => {
         const stub = sinon.stub(ewelink.prototype, 'login')
           .callsFake(() => Promise.resolve({ error: 1234 }));
   
-        expect(eWeLinkConnect.login(helper._RED, n2, { auth: 'n1' }))
+        expect(eWeLinkConnect.ready(helper._RED, n2, { auth: 'n1' }))
           .to.be.rejectedWith({ error: 1234 });
 
         stub.restore();
@@ -93,7 +112,7 @@ describe('eWeLink Connect Utils', () => {
         const stub = sinon.stub(ewelink.prototype, 'login')
           .callsFake(() => Promise.resolve({ }));
   
-        expect(eWeLinkConnect.login(helper._RED, n2, { auth: 'n1' }))
+        expect(eWeLinkConnect.ready(helper._RED, n2, { auth: 'n1' }))
           .to.be.fulfilled.and.should.eventually.have.property('email');
 
         stub.restore();
