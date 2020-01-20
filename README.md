@@ -26,5 +26,8 @@
 ### Documentation
 Read the documentation here: https://ottoszika.github.io/node-red-contrib-ewelink
 
+### Video How-To
+Step-by-step guide - https://youtu.be/DbBqa-rq31g
+
 ### Special Thanks
 - [@skydiver](https://github.com/skydiver) - [eWeLink API](https://github.com/skydiver/ewelink-api)
