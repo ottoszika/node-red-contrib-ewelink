@@ -20,7 +20,11 @@ module.exports = function (RED) {
     this.region = this.credentials.region;
     
     // Initialize eWeLink
-    this.connection = new ewelink(this.credentials);
+    try {
+      this.connection = new ewelink(this.credentials);
+    } catch (e) {
+      this.connection = { };
+    }
   }
 
   // Register node

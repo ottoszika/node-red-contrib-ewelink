@@ -14,7 +14,7 @@ module.exports = (RED) => {
     RED.nodes.createNode(this, config);
 
     // Initialize device node
-    eWeLinkConnect.initializeDeviceNode(RED, this, config, 'setWSDevicePowerState', msg => [msg.payload.toLowerCase()]);
+    eWeLinkConnect.initializeDeviceNode(RED, this, config, 'setDevicePowerState', msg => [msg.payload.toLowerCase(), config.channel]);
   }
 
   // Register node
