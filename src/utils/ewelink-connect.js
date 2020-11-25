@@ -19,27 +19,18 @@ module.exports = {
     this.setNodeStatusToConnecting(node);
 
     return new Promise((resolve, reject) => {
-      // Check if already logged in
-      if (credentialsNode.connection.at) {
-        return resolve(credentialsNode.connection);
-      }
-
-      // Logging in
-      credentialsNode.connection.login().then(response => {
-        // Check for errors in the response
+      credentialsNode.connection.getCredentials().then(response => {
         if (response.error) {
           this.setNodeStatusToDisconnected(node);
           return reject(response);
         }
-
-        // If we are here everything is great
         this.setNodeStatusToConnected(node);
-        resolve(credentialsNode.connection);
-
-        }).catch(error => {
-          this.setNodeStatusToDisconnected(node);
-          reject(error);
-        });
+        return resolve(credentialsNode.connection);
+      })
+      .catch(error => {
+        this.setNodeStatusToDisconnected(node);
+        reject(error);
+      });
     });
   },
 
@@ -66,11 +57,14 @@ module.exports = {
         
         // First parameter should be always the device ID
         evaluatedParams.unshift(deviceId);
-        
-        // Call dynamically the method
-        connection[evaluatedMethod].apply(connection, evaluatedParams).then(result => {
+
+        connection.getCredentials().then(() => {
+          return connection[evaluatedMethod].apply(connection, evaluatedParams);
+        }).then(result => {
           node.send({ payload: result });
-        }).catch(error => node.error(error));
+        }).catch(error => {
+          node.error(error);
+        });
       })
     }).catch(error => node.error(error));
   },
