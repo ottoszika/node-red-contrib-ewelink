@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- Update ewelink-api to v3.1.1 (#104, !108)
+
 ## v1.0.2 (2019-12-18)
 ### Fixed
 - Fix connection and login mechanism (#72)
