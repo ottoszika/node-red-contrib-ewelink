@@ -58,13 +58,10 @@ module.exports = {
         // First parameter should be always the device ID
         evaluatedParams.unshift(deviceId);
 
-        connection.getCredentials().then(() => {
-          return connection[evaluatedMethod].apply(connection, evaluatedParams);
-        }).then(result => {
+        // Call dynamically the method
+        connection[evaluatedMethod].apply(connection, evaluatedParams).then(result => {
           node.send({ payload: result });
-        }).catch(error => {
-          node.error(error);
-        });
+        }).catch(error => node.error(error));
       })
     }).catch(error => node.error(error));
   },
