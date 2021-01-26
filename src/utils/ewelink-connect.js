@@ -64,8 +64,14 @@ module.exports = {
         const evaluatedMethod = method || msg.payload.method;
         const evaluatedParams = (typeof params === 'function' ? params(msg) : params) || msg.payload.params || [];
         
+        let device_id = '';
+        if (deviceId) {
+          device_id = deviceId;
+        } else if (typeof msg.deviceId !== "undefined") {
+          device_id = msg.deviceId || '';
+        }
         // First parameter should be always the device ID
-        evaluatedParams.unshift(deviceId);
+        evaluatedParams.unshift(device_id);
         
         // Call dynamically the method
         connection[evaluatedMethod].apply(connection, evaluatedParams).then(result => {
