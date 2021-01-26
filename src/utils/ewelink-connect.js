@@ -75,7 +75,7 @@ module.exports = {
         
         // Call dynamically the method
         connection[evaluatedMethod].apply(connection, evaluatedParams).then(result => {
-          node.send({ payload: result });
+          node.send({ deviceId: device_id, payload: result });
         }).catch(error => node.error(error));
       })
     }).catch(error => node.error(error));
