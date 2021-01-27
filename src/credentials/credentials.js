@@ -22,8 +22,14 @@ module.exports = function (RED) {
     // Initialize eWeLink
     try {
       this.connection = new ewelink(this.credentials);
+      this.getCredentials = function() {
+        return this.connection.getCredentials();
+      }
     } catch (e) {
       this.connection = { };
+      this.getCredentials = function() {
+        return Promise.reject(new Error(e));
+      }
     }
   }
 

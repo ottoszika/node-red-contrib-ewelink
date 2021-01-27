@@ -19,7 +19,7 @@ module.exports = {
     this.setNodeStatusToConnecting(node);
 
     return new Promise((resolve, reject) => {
-      credentialsNode.connection.getCredentials().then(response => {
+      credentialsNode.getCredentials().then(response => {
         if (response.error) {
           this.setNodeStatusToDisconnected(node);
           return reject(response);
