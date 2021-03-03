@@ -45,6 +45,12 @@ module.exports = {
    */
   initializeDeviceNode(RED, node, config, method, params) {
     // Clean up device ID
+    let deviceId='';
+    if (config.deviceId && config.deviceId.trim()) {
+      deviceId = config.deviceId.trim();
+    } else if (typeof msg.deviceId !== "undefined") {
+      deviceId = msg.deviceId || '';
+    }
     const deviceId = config.deviceId ? config.deviceId.trim() : '';
 
     // Log in to eWeLink
@@ -55,18 +61,12 @@ module.exports = {
         const evaluatedMethod = method || msg.payload.method;
         const evaluatedParams = (typeof params === 'function' ? params(msg) : params) || msg.payload.params || [];
         
-        let device_id = '';
-        if (deviceId) {
-          device_id = deviceId;
-        } else if (typeof msg.deviceId !== "undefined") {
-          device_id = msg.deviceId || '';
-        }
         // First parameter should be always the device ID
-        evaluatedParams.unshift(device_id);
+        evaluatedParams.unshift(deviceId);
 
         // Call dynamically the method
         connection[evaluatedMethod].apply(connection, evaluatedParams).then(result => {
-          node.send({ deviceId: device_id, payload: result });
+          node.send({ deviceId: deviceId, payload: result });
         }).catch(error => node.error(error));
       })
     }).catch(error => node.error(error));
