@@ -51,7 +51,6 @@ module.exports = {
     } else if (typeof msg.deviceId !== "undefined") {
       deviceId = msg.deviceId || '';
     }
-    const deviceId = config.deviceId ? config.deviceId.trim() : '';
 
     // Log in to eWeLink
     this.ready(RED, node, config).then(connection => {
