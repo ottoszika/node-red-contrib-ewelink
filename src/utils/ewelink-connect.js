@@ -19,7 +19,7 @@ module.exports = {
     this.setNodeStatusToConnecting(node);
 
     return new Promise((resolve, reject) => {
-      credentialsNode.connection.getCredentials().then(response => {
+      credentialsNode.getCredentials().then(response => {
         if (response.error) {
           this.setNodeStatusToDisconnected(node);
           return reject(response);
@@ -45,7 +45,12 @@ module.exports = {
    */
   initializeDeviceNode(RED, node, config, method, params) {
     // Clean up device ID
-    const deviceId = config.deviceId ? config.deviceId.trim() : '';
+    let deviceId='';
+    if (config.deviceId && config.deviceId.trim()) {
+      deviceId = config.deviceId.trim();
+    } else if (typeof msg.deviceId !== "undefined") {
+      deviceId = msg.deviceId || '';
+    }
 
     // Log in to eWeLink
     this.ready(RED, node, config).then(connection => {
@@ -60,7 +65,7 @@ module.exports = {
 
         // Call dynamically the method
         connection[evaluatedMethod].apply(connection, evaluatedParams).then(result => {
-          node.send({ payload: result });
+          node.send({ deviceId: deviceId, payload: result });
         }).catch(error => node.error(error));
       })
     }).catch(error => node.error(error));
