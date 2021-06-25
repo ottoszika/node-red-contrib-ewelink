@@ -19,27 +19,18 @@ module.exports = {
     this.setNodeStatusToConnecting(node);
 
     return new Promise((resolve, reject) => {
-      // Check if already logged in
-      if (credentialsNode.connection.at) {
-        return resolve(credentialsNode.connection);
-      }
-
-      // Logging in
-      credentialsNode.connection.login().then(response => {
-        // Check for errors in the response
+      credentialsNode.getCredentials().then(response => {
         if (response.error) {
           this.setNodeStatusToDisconnected(node);
           return reject(response);
         }
-
-        // If we are here everything is great
         this.setNodeStatusToConnected(node);
-        resolve(credentialsNode.connection);
-
-        }).catch(error => {
-          this.setNodeStatusToDisconnected(node);
-          reject(error);
-        });
+        return resolve(credentialsNode.connection);
+      })
+      .catch(error => {
+        this.setNodeStatusToDisconnected(node);
+        reject(error);
+      });
     });
   },
 
@@ -53,13 +44,18 @@ module.exports = {
    * @param {array} params The parameters of the method.
    */
   initializeDeviceNode(RED, node, config, method, params) {
-    // Clean up device ID
-    const deviceId = config.deviceId ? config.deviceId.trim() : '';
-
     // Log in to eWeLink
     this.ready(RED, node, config).then(connection => {
       // Once logged in we can listen to inputs
       node.on('input', (msg) => {
+        // Clean up device ID
+        let deviceId='';
+        if (config.deviceId && config.deviceId.trim()) {
+          deviceId = config.deviceId.trim();
+        } else if (typeof msg.deviceId !== "undefined") {
+          deviceId = msg.deviceId || '';
+        }
+
         // Get method name and build params
         const evaluatedMethod = method || msg.payload.method;
         const evaluatedParams = (typeof params === 'function' ? params(msg) : params) || msg.payload.params || [];
@@ -75,7 +71,7 @@ module.exports = {
         
         // Call dynamically the method
         connection[evaluatedMethod].apply(connection, evaluatedParams).then(result => {
-          node.send({ payload: result });
+          node.send({ deviceId: deviceId, payload: result });
         }).catch(error => node.error(error));
       })
     }).catch(error => node.error(error));
