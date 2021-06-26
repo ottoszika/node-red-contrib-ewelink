@@ -44,18 +44,18 @@ module.exports = {
    * @param {array} params The parameters of the method.
    */
   initializeDeviceNode(RED, node, config, method, params) {
-    // Clean up device ID
-    let deviceId='';
-    if (config.deviceId && config.deviceId.trim()) {
-      deviceId = config.deviceId.trim();
-    } else if (typeof msg.deviceId !== "undefined") {
-      deviceId = msg.deviceId || '';
-    }
-
     // Log in to eWeLink
     this.ready(RED, node, config).then(connection => {
       // Once logged in we can listen to inputs
       node.on('input', (msg) => {
+        // Clean up device ID
+        let deviceId='';
+        if (config.deviceId && config.deviceId.trim()) {
+          deviceId = config.deviceId.trim();
+        } else if (typeof msg.deviceId !== "undefined") {
+          deviceId = msg.deviceId || '';
+        }
+
         // Get method name and build params
         const evaluatedMethod = method || msg.payload.method;
         const evaluatedParams = (typeof params === 'function' ? params(msg) : params) || msg.payload.params || [];
